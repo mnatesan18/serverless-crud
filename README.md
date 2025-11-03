@@ -124,7 +124,7 @@ Each YAML workflow runs automatically on push and verifies builds for backend an
 
 ## 📹 Demo Video (Loom)
 
-🎥 Add your Loom demo link here  
+🎥 Add your Loom demo link here : https://www.loom.com/share/c9b920b3cdae40cbb3cd740a183baaaa
 Walkthrough includes backend startup, frontend interaction, CRUD demo, and CI/CD explanation.
 
 ---
