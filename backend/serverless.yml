@@ -1,0 +1,49 @@
+service: aws-serverless-crud
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  environment:
+    TABLE_NAME: mockTable
+    IS_OFFLINE: true
+
+plugins:
+  - serverless-offline
+
+functions:
+  createItem:
+    handler: src/handlers/create.handler
+    events:
+      - httpApi:
+          path: /items
+          method: post
+
+  getItem:
+    handler: src/handlers/get.handler
+    events:
+      - httpApi:
+          path: /items/{id}
+          method: get
+
+  listItems:
+    handler: src/handlers/list.handler
+    events:
+      - httpApi:
+          path: /items
+          method: get
+
+  updateItem:
+    handler: src/handlers/update.handler
+    events:
+      - httpApi:
+          path: /items/{id}
+          method: put
+
+  deleteItem:
+    handler: src/handlers/delete.handler
+    events:
+      - httpApi:
+          path: /items/{id}
+          method: delete

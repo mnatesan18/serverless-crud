@@ -1,0 +1,34 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches: ["main", "dev"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+
+      - name: Install dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Deploy with Serverless
+        working-directory: backend
+        run: |
+          STAGE=$([[ "${{ github.ref_name }}" == "main" ]] && echo "prod" || echo "dev")
+          npx serverless deploy --stage $STAGE

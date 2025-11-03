@@ -1,0 +1,22 @@
+{
+  "name": "aws-serverless-crud-backend",
+  "version": "1.0.0",
+  "description": "Serverless Framework CRUD API (AWS Lambda + DynamoDB, offline-ready)",
+  "main": "src/handlers/list.js",
+  "type": "module",
+  "scripts": {
+    "start": "serverless offline",
+    "deploy:dev": "serverless deploy --stage dev",
+    "deploy:prod": "serverless deploy --stage prod",
+    "remove:dev": "serverless remove --stage dev"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.922.0",
+    "@aws-sdk/lib-dynamodb": "^3.922.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "serverless": "^4.22.0",
+    "serverless-offline": "^14.4.0"
+  }
+}

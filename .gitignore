@@ -1,0 +1,8 @@
+# Ignore dependencies and build outputs
+node_modules/
+.serverless/
+build/
+dist/
+.env
+.DS_Store
+coverage/
